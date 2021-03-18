@@ -23,3 +23,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('produto', ProdutoController::class)->middleware('auth');
+Route::get('/produto/destroy/{id}', [ProdutoController::class, 'destroy']);

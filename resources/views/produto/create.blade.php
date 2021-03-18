@@ -16,11 +16,17 @@
             <div class="form-group">
                 <label for="name">Nome:</label>
                 <input type="text" name="name" id="name" class="form-control">
+                @if ($errors->has('name'))
+                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                @endif
             </div>
 
             <div class="form-group">
                 <label for="description">Descrição:</label>
                 <input type="text" name="description" id="description" class="form-control">
+                @if ($errors->has('description'))
+                    <span class="text-danger">{{ $errors->first('description') }}</span>
+                @endif
             </div>
 
 @if (!empty($categories)) 
@@ -29,7 +35,9 @@
             <option selected>Selecione a Categoria</option>
     @foreach ($categories as $categ)
                 <option value='{{$categ->id}}'>{{$categ->name}}</option>
-
+                @if ($errors->has('category'))
+                    <span class="text-danger">{{ $errors->first('category') }}</span>
+                @endif
     @endforeach
             </select>
         </div>

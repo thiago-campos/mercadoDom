@@ -13,10 +13,10 @@ class ConstraintProdutosCategories extends Migration
      */
     public function up()
     {
-        Schema::table('produtos', function (Blueprint $table) {
-            $table->unsignedInteger('category');
-            $table->foreign('category')->references('id')->on('categories')->onDelete('cascade');
-        });
+        // Schema::table('products', function (Blueprint $table) {
+        //     $table->unsignedInteger('category');
+        //     $table->foreign('category')->references('id')->on('categories')->onDelete('cascade');
+        // });
     }
 
     /**
@@ -26,8 +26,8 @@ class ConstraintProdutosCategories extends Migration
      */
     public function down()
     {
-        Schema::table('produtos', function (Blueprint $table) {
-            $table->dropColumn('category');
-        });
+        // Schema::table('products', function (Blueprint $table) {
+        //     $table->dropColumn('category');
+        // });
     }
 }

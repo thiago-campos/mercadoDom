@@ -18,14 +18,14 @@
          
           {{-- {{ $linkNew = url('produto.create'. $produto->name)}};
           {{ $linkReadMore = url('produto.show'. $produto->id)}};
-          {{ $linkEditItem = url('produto.edit'. $produto->name)}};
-          {{ $linkRemoveItem = url('produto.destroy'. $produto->name)}}; --}}
+          {{ $linkEditItem = url('produto.edit'. $produto->name)}};--}}
+          {{-- {{ $linkRemoveItem = url('produto/destroy'. $produto->id)}}; --}}
 
             <tr>
                 <td>{{$produto->name}}</td>
                 <td>{{$produto->category}}</td>
                 <td>{{$produto->created_at}}</td> 
-                <td><a href="{{route('produto.edit', $produto->id)}}">Editar</a> | <a href="{{url('/produto/destroy')}}">Remover</a></td>  
+                <td><a href="{{route('produto.edit', $produto->id)}}">Editar</a> | <a href="{{url('/produto/destroy/'.$produto->id)}}">Remover</a></td>  
             </tr>
           @endforeach
     </table>

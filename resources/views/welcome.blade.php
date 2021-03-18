@@ -28,7 +28,7 @@
                 <div class="collapse navbar-collapse">
                     <a class="navbar-brand" href="{{ url('/')}}" >Mercado<b>Dom</b></a>
                     @auth
-                    <a class="navbar-brand" href="{{ url('/home')}}" >Mercado<b>Dom</b></a>
+                    {{-- <a class="navbar-brand" href="{{ url('/home')}}" >Mercado<b>Dom</b></a> --}}
                     @else
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Entrar</a></li>

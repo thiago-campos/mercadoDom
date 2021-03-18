@@ -10,18 +10,26 @@
 
 <body>
     <div class="container">
-        <h1>Novo Produto</h1>
+        <h1>Ed
+            itar Produto</h1>
 
-        <form action="{{ route('produto.store') }}" class="form-group" method="POST">
+        <form action="{{ route('produto.update', $produto->id)}}" class="form-group" method="POST">
+            @method('PUT')
             @csrf
             <div class="form-group">
                 <label for="name">Nome:</label>
                 <input type="text" value="{{$produto->name}}" name="name" id="name" class="form-control">
+                @if ($errors->has('name'))
+                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                @endif
             </div>
 
             <div class="form-group">
                 <label for="description">Descrição:</label>
                 <input type="text" value="{{$produto->description}}" name="description" id="description" class="form-control">
+                @if ($errors->has('description'))
+                    <span class="text-danger">{{ $errors->first('description') }}</span>
+                @endif
             </div>
 
 @if (!empty($categories)) 
@@ -30,7 +38,9 @@
             <option selected>Selecione a Categoria</option>
     @foreach ($categories as $categ)
                 <option value='{{$categ->id}}' {{$produto->category === $categ->id ? 'selected' : ''}}>{{$categ->name}}</option>
-
+                @if ($errors->has('category'))
+                    <span class="text-danger">{{ $errors->first('category') }}</span>
+                @endif
     @endforeach
             </select>
         </div>
@@ -38,7 +48,7 @@
 @endif
             
 
-            <button class="btn btn-primary" type="submit">Cadastrar</button>
+            <button class="btn btn-primary" type="submit">Editar</button>
         </form>
 
     </div>
