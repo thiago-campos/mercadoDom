@@ -67,9 +67,7 @@ class ProdutoController extends Controller
 
         if($validatedData->fails())
         {
-            return redirect('/produto/create')
-            ->withErrors($validatedData)
-            ->withInput();
+            return redirect('/produto/create')->withErrors($validatedData)->withInput();
         }
         DB::beginTransaction();
         try
@@ -80,14 +78,14 @@ class ProdutoController extends Controller
             $produto->category = $request->category;
             $produto->save();
             DB::commit();
-            return redirect()->action([ProdutoController::class, 'index']);
+            return redirect()->action([ProdutoController::class, 'index'])->with('success','Cadastrado com sucesso!');
         }
         catch(\Exception $e)
         {
             if (config('app.debug')) {
                 dd($e);
             }
-            return back()->with('errors', "Não foi possível cadastrar o produto. Tente novamente mais tarde!");
+            return redirect('produto')->with('toast_error', "Não foi possível cadastrar o produto. Tente novamente mais tarde!");
         }
     }
 
@@ -99,8 +97,8 @@ class ProdutoController extends Controller
      */
     public function show(Product $produto)
     {
-        // $show = $produto->find($id);
-        // return view('produto.show')->with('produto', $id);
+        $categories = Category::all();
+        return view('produto.show', compact('produto','categories'));
     }
 
     /**
@@ -141,17 +139,27 @@ class ProdutoController extends Controller
 
         if($validatedData->fails())
         {
-        return redirect('/produto/create')
-        ->withErrors($validatedData)
-        ->withInput();
+        return redirect('/produto/create')->withErrors($validatedData)->withInput();
         }
 
-        $produto = Product::find($produto->id);
-        $produto->name = $request->name;
-        $produto->description = $request->description;
-        $produto->category = $request->category;
-        $produto->save();
-        return redirect()->action([ProdutoController::class, 'index']);
+        try
+        {
+            $produto = Product::find($produto->id);
+            $produto->name = $request->name;
+            $produto->description = $request->description;
+            $produto->category = $request->category;
+            $produto->save();
+            return redirect()->action([ProdutoController::class, 'index'])->with('success','Editado com sucesso!');
+        }
+        catch(\Exception $e)
+        {
+            if(config('app.debug')){
+                dd($e);
+            }
+
+            return redirect('produto')->with('toast_error','Não foi possível editar o produto. Tente novamente mais tarde!');
+        }
+        
     }
 
     /**
@@ -162,7 +170,17 @@ class ProdutoController extends Controller
      */
     public function destroy($id)
     {
-        $destroy = Product::destroy($id);
-        return redirect()->action([ProdutoController::class, 'index']);
+        try{
+            $destroy = Product::destroy($id);
+            return redirect()->action([ProdutoController::class, 'index'])->with('success','Excluído com sucesso!');
+        }
+        catch(\Exception $e)
+        {
+            if(config('app.debug')){
+                dd($e);
+            }
+            return redirect('produto')->with('toast_error','Não foi possível excluir o produto. Tente novamente mais tarde!');
+        }
+        
     }
 }
