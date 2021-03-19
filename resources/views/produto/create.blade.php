@@ -1,3 +1,5 @@
+@extends('layouts.app')
+@section('content')
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -46,6 +48,7 @@
             
 
             <button class="btn btn-primary" type="submit">Cadastrar</button>
+
         </form>
 
     </div>
@@ -53,3 +56,4 @@
     <script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>
+@endsection

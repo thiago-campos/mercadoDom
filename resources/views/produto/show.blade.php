@@ -1,20 +1,20 @@
 @extends('layouts.app')
 @section('content')
+
 <div class="container my-3">
-<h1>Detalhes</h1>
-<?php
-if(!empty($produto)){
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Detalhes</h1>
+        <hr class="my-4">
 
-    foreach($produto as $pro){
-        ?>
-        <h2>Nome: <?= $pro->name; ?></h2>
-        <p>Descrição: <?= $prop->description; ?></p>
-        <p>Categoria: <?= $prop->category ?></p>
-        <p>Criado em: <?= $pro->created_at ?></p>
-        <?php
-    }
-}
+        @if(!empty($produto))
 
-?>
+                <h3 class="display-6">Nome:      {{$produto->name}} </h3>
+                <p class="lead">Descrição:  {{$produto->description}} </p>
+                <p class="lead">Categoria:  {{$produto->category}} </p>
+                <p class="lead">Criado em:  {{$produto->created_at}} </p> 
+        @endif
+        <br>
+       <a class="btn btn-primary" href="{{ url('/produto')}}" >Voltar</a>
+    </div>
 </div>
 @endsection

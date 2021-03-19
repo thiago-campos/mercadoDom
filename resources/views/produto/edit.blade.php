@@ -1,17 +1,18 @@
+@extends('layouts.app')
+@section('content')
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Novo Produto</title>
+    <title>Editar Produto</title>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 
 <body>
     <div class="container">
-        <h1>Ed
-            itar Produto</h1>
+        <h1>Editar Produto</h1>
 
         <form action="{{ route('produto.update', $produto->id)}}" class="form-group" method="POST">
             @method('PUT')
@@ -48,7 +49,7 @@
 @endif
             
 
-            <button class="btn btn-primary" type="submit">Editar</button>
+            <button class="btn btn-primary" type="submit">Editar</button> <a class="btn btn-primary" href="{{ url('/produto')}}" >Voltar</a>
         </form>
 
     </div>
@@ -56,3 +57,4 @@
     <script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>
+@endsection
